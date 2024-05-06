@@ -1,16 +1,19 @@
 import connect from "@/dbConfig.js/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
-import userModel from "@/models/userModel";
 import bcryptjs from "bcryptjs";
 import { sendEmail } from "@/helpers/mailer";
+import userModel from "@/models/userModel";
 
 connect();
 
 export async function POST(request: NextRequest) {
-  try {
-    const { username, email, password } = await request.json();
+  const reqBody = await request.json();
 
-    const user = await userModel.find({ email });
+  const { username, email, password } = reqBody;
+  console.log(reqBody);
+
+  try {
+    const user = await userModel.findOne({ email });
 
     if (user) {
       return NextResponse.json(
@@ -18,8 +21,14 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 
-    const hashedPassword = bcryptjs.hash(password, 10);
+  let savedUser;
+
+  try {
+    const hashedPassword = await bcryptjs.hash(password, 10);
 
     const newUser = new userModel({
       username,
@@ -27,18 +36,34 @@ export async function POST(request: NextRequest) {
       password: hashedPassword,
     });
 
-    const savedUser = await newUser.save();
+    savedUser = await newUser.save();
     console.log(savedUser);
+  } catch (error: any) {
+    return NextResponse.json(
+      {
+        message: "Error while saving user or hashing password",
+        error: error.message,
+      },
+      { status: 500 }
+    );
+  }
 
-    //send verification email
-    await sendEmail({ email, emailType: "VERIFY", userId: savedUser._id });
-
-    return NextResponse.json({
-      message: "User Registered successfully",
-      success: true,
-      savedUser,
+  try {
+    const sendingEmail = await sendEmail({
+      email,
+      emailType: "VERIFY",
+      userId: savedUser._id,
     });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { message: "Error in SendingEmail", error: error.message },
+      { status: 500 }
+    );
   }
+
+  return NextResponse.json({
+    message: "User Registered successfully",
+    success: true,
+    savedUser,
+  });
 }
