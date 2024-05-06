@@ -39,16 +39,16 @@ export async function POST(request: NextRequest) {
       expiresIn: "1D",
     });
 
-    const reponse = NextResponse.json({
+    const response = NextResponse.json({
       message: "Logged in success",
       success: true,
     });
 
-    reponse.cookies.set("token", token, {
+    response.cookies.set("token", token, {
       httpOnly: true,
     });
 
-    return reponse;
+    return response;
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
