@@ -175,3 +175,12 @@ Here you will explain how other developers can contribute to your project. For e
 4. Push to the branch: git push origin feature.
 5. Submit a pull request.
 
+<h2 id="contribute"> Screenshots</h2>
+
+![Screenshot 2024-05-14 221555](https://github.com/sauravkamble5/nextauth/assets/99634720/9c1902f3-9803-4894-bf52-577f9cea580d)
+
+![Screenshot 2024-05-14 222013](https://github.com/sauravkamble5/nextauth/assets/99634720/75a32e41-30f4-4813-99a7-b86ba07fe088)
+
+![Screenshot 2024-05-14 222145](https://github.com/sauravkamble5/nextauth/assets/99634720/edaede6b-d95c-4914-88de-4879846fd8a9)
+
+
