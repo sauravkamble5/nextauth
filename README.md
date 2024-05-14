@@ -1,36 +1,181 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+                     
+<h1 align="center" style="font-weight: bold;">NextAuth 💻</h1>
 
-## Getting Started
+<p align="center">
+<a href="#tech">Technologies</a>
+<a href="#started">Getting Started</a>
+<a href="#routes">API Endpoints</a>
+<a href="#colab">Collaborators</a>
+<a href="#contribute">Contribute</a> 
+</p>
 
-First, run the development server:
+
+<p align="center">NextAuth is a project aimed at providing authentication and user management functionality for Next.js applications. It includes features such as user sign-up, login, profile management, email verification, and more. This project uses technologies like Next.js, MongoDB, and JWT for authentication.</p>
+
+
+<p align="center">
+<a href="https://nextauth-5778suyn5-iamsauravkambles-projects.vercel.app/login">📱 Visit this Project</a>
+</p>
+ 
+<h2 id="technologies">💻 Technologies</h2>
+
+ **Next.js**: Framework for building server-rendered and statically generated React applications.
+- **MongoDB**: NoSQL database for storing and managing application data.
+- **JWT (JSON Web Tokens)**: Standard for securely transmitting information between parties as a JSON object.
+- **bcryptjs**: Library for hashing passwords securely.
+- **Axios**: Promise-based HTTP client for making HTTP requests.
+- **Nodemailer**: Module for sending emails with Node.js.
+- **React**: JavaScript library for building user interfaces.
+- **React Hot Toast**: Toast notification library for React applications.
+- **Mongoose**: Object Data Modeling (ODM) library for MongoDB and Node.js.
+- **Tailwind CSS**: Utility-first CSS framework for building custom user interfaces.
+ 
+<h2 id="started">🚀 Getting started</h2>
+
+To get started with NextAuth, follow these steps:
+
+ 
+<h3>Prerequisites</h3>
+
+Before you begin, ensure you have the following prerequisites installed and configured on your system:
+
+1. **Node.js and npm**: Make sure you have Node.js and npm (Node Package Manager) installed on your machine. You can download and install them from the [official Node.js website](https://nodejs.org/).
+
+2. **MongoDB**: NextAuth uses MongoDB as its database. Make sure you have MongoDB installed and running on your system. You can download and install MongoDB from the [official MongoDB website](https://www.mongodb.com/).
+
+3. **Environment Variables**: Create a `.env` file in the root directory of the project and define the following environment variables:
+
+ 
+<h3>Cloning</h3>
+
 
 ```bash
+git clone https://github.com/sauravkamble5/nextauth.git
+```
+ 
+<h3>Config .env variables</h2>
+
+Use the `.env.example` as reference to create your configuration file `.env`
+
+MONGO_URI=your_mongodb_connection_string
+
+TOKEN_SECRET=your_jwt_secret 
+
+DOMAIN=your_domain_url
+ 
+<h3>Starting</h3>
+
+How to start your project
+
+```bash
+cd nextauth
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+ 
+<h2 id="routes">📍 API Endpoints</h2>
+
+Here you can list the main routes of your API, and what are their expected request bodies.
+​
+| route               | description                                          
+|----------------------|-----------------------------------------------------
+<kbd>POST/signup</kbd>   |   Allows new users to sign up by providing their credentials.
+|
+| <kbd>POST/login</kbd>     |  Allows users to log in by providing their email and password.
+|
+ <kbd>POST/verifyemail</kbd>     |  Verifies the user's email address using a verification token.
+|
+|
+ <kbd>POST/me</kbd>   |   Retrieves details of the currently authenticated user.
+| <kbd>GET/logout</kbd>     |  Logs out the currently authenticated user.
+|
+
+<h3 id="get-auth-detail">POST/signup</h3>
+
+**REQUEST**
+```json
+{
+  "username": "example_user",
+  "email": "user@example.com",
+  "password": "password123"
+}```
+
+**RESPONSE**
+```json
+{
+ "username": "example_user",
+  "email": "user@example.com",  "password": "hashed password.",
+  "isVerified": false,
+  "isAdmin": false,
+  "_id": "mongo id"
+}
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<h3 id="post-auth-detail">POST /login</h3>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**REQUEST**
+```json
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**RESPONSE**
+```json
+{
+  "message": "Logged in successfully",
+  "success": true
+}
+```
+<h3 id="post-auth-detail">POST /verifyemail</h3>
 
-## Learn More
+**REQUEST**
+```json
+{
+  "token": "verification_token"
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+**RESPONSE**
+```json
+{
+  "message": "Email verified successfully",
+  "success": true
+}
+```
+<h3 id="post-auth-detail">POST /me</h3>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**RESPONSE**
+```json
+{
+  "message": "User found",
+  "data": {
+    "username": "example_user",
+    "email": "user@example.com"
+  }
+}
+```
+<h3 id="post-auth-detail">GET/logout</h3>
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**RESPONSE**
+```json
+{
+  "message": "Logout successfully",
+  "success": true
+}
+```
+ 
+<h2 id="contribute">📫 Contribute</h2>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Here you will explain how other developers can contribute to your project. For example, explaining how can create their branches, which patterns to follow and how to open an pull request 
+
+1.  Fork the repository.
+2. Create a new branch: git checkout -b feature.
+3. Make your changes and commit them: git commit - 
+     m 'Add feature'.
+4. Push to the branch: git push origin feature.
+5. Submit a pull request.
+
