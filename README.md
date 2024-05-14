@@ -79,15 +79,10 @@ Here you can list the main routes of your API, and what are their expected reque
 | route               | description                                          
 |----------------------|-----------------------------------------------------
 <kbd>POST/signup</kbd>   |   Allows new users to sign up by providing their credentials.
-|
-| <kbd>POST/login</kbd>     |  Allows users to log in by providing their email and password.
-|
+<kbd>POST/login</kbd>     |  Allows users to log in by providing their email and password.
  <kbd>POST/verifyemail</kbd>     |  Verifies the user's email address using a verification token.
-|
-|
  <kbd>POST/me</kbd>   |   Retrieves details of the currently authenticated user.
-| <kbd>GET/logout</kbd>     |  Logs out the currently authenticated user.
-|
+ <kbd>GET/logout</kbd>     |  Logs out the currently authenticated user.
 
 <h3 id="get-auth-detail">POST/signup</h3>
 
@@ -97,7 +92,8 @@ Here you can list the main routes of your API, and what are their expected reque
   "username": "example_user",
   "email": "user@example.com",
   "password": "password123"
-}```
+}
+```
 
 **RESPONSE**
 ```json
