@@ -14,7 +14,7 @@
 
 
 <p align="center">
-<a href="https://nextauth-5778suyn5-iamsauravkambles-projects.vercel.app/login">📱 Visit this Project</a>
+<a href="https://nextauth-swart-six.vercel.app/signup">📱 Visit this Project</a>
 </p>
  
 <h2 id="technologies">💻 Technologies</h2>
