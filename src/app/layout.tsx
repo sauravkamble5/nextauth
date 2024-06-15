@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Outfit } from 'next/font/google';
 import './globals.css';
 import AuthProvider from '@/context/AuthProvider';
-
+import { Toaster } from '@/components/ui/toaster';
 const outfit = Outfit({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -18,7 +18,10 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<AuthProvider>
-				<body className={outfit.className}>{children}</body>
+				<body className={outfit.className}>
+					{children}
+					<Toaster />
+				</body>
 			</AuthProvider>
 		</html>
 	);
