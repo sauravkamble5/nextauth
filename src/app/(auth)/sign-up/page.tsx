@@ -128,7 +128,7 @@ const Page = () => {
 												: 'text-red-500'
 										} `}
 									>
-										test {usernameMessage}
+										 {usernameMessage}
 									</p>
 									<FormMessage />
 								</FormItem>
